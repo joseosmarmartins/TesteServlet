@@ -1,6 +1,5 @@
 package servletJoseOsmar;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "SegundoServlet", urlPatterns = "/SegundoServlet")
-public class SegundoServlet extends HttpServlet {
+@WebServlet("/ExemploSendRedirect")
+public class ExemploSendRedirect extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -18,11 +17,19 @@ public class SegundoServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         out.println("<html>");
         out.println("<head>");
-        out.println("<title>Segundo Servlet</title>");
+        out.println("<title> ExemploSendRedirect Servlet</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<br><h1> Segundo Servlet</h1></br>");
+        out.println("<h1> ExemploSendRedirect Servlet</h1>");
+        out.println("<form method='post' action='ExemploSendRedirect'>");
+        out.println("<input type='submit' value='Enviar'>");
+        out.println("</form>");
         out.println("</body>");
         out.println("</html>");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.sendRedirect("/SegundoServlet");
     }
 }

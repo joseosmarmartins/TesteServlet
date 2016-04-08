@@ -22,6 +22,10 @@ public class ExemploSendRedirect extends HttpServlet {
         out.println("<body>");
         out.println("<h1> ExemploSendRedirect Servlet</h1>");
         out.println("<form method='post' action='ExemploSendRedirect'>");
+
+        out.println("<label>Nome:</label>");
+        out.println("<input type='text' name='nome'/>");
+
         out.println("<input type='submit' value='Enviar'>");
         out.println("</form>");
         out.println("</body>");
@@ -30,6 +34,7 @@ public class ExemploSendRedirect extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/SegundoServlet");
+        String nome = req.getParameter("nome");
+        resp.sendRedirect("/SegundoServlet?name=" + nome);
     }
 }
